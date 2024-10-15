@@ -57,24 +57,28 @@ class CoffeeShop{
         this.orders=[];
     }
     #addOrders(item){
-        if(menu.find(i=>i.item.toLowerCase()===item.toLowerCase())) {this.orders.push(item); console.log(this.orders);}
+        if(this.menu.find(i=>i.item.toLowerCase()===item.toLowerCase())) {
+            this.orders.push(item); 
+            console.log(this.orders);
+        }
         else return "This item is currently unavailable!";
     }
-    fulfillOrder=function(){
-        let fulfilledItem="";
-        if(this.orders.length<1){
-            return ("All orderws have been fulfilled!");
-        }
-        else{
-            fulfilledItem=this.orders.unshif();
-            return (`The ${fulfilledItem} is ready`);
+    #fulfillOrder() {
+        if (this.orders.length < 1) {
+            return "All orders have been fulfilled!";
+        } else {
+            const fulfilledItem = this.orders.shift();
+            return `The ${fulfilledItem} is ready!`;
         }
     }
     listOrders(){
         return (this.orders);
     }
-    #dueAmount(){
-        return (this.orders.reduce((sum,c)=> (sum.price+=c.price)),0);
+    #dueAmount() {
+        return this.orders.reduce((sum, c) => {
+            const item = this.menu.find(i => i.item.toLowerCase() === c.toLowerCase());
+            return sum + (item ? item.price : 0);
+        }, 0);
     }
     #cheapestItem(){
         let res= this.menu.reduce((cheapest,prices)=>{
@@ -88,9 +92,9 @@ class CoffeeShop{
         const res=this.menu.filter(item=>item.type==="drink").map(item=>item.item);
         return `List of Drinks only ::::: ${res}`;
     }
-    #foodOnly=function(){
+    #foodOnly(){
         const res= this.menu.filter(item=>item.type==="food").map(item=>item.item);
-        return( `List of Foods only ::::: ${res}`);
+        return (`List of Foods only ::::: ${res}`);
     }
 
     publicAddOrders(item) {
@@ -123,6 +127,10 @@ console.log(tsc.publicAddOrders("iced tea"));
 console.log(tsc.publicAddOrders("cinnamon roll"));
 console.log(tsc.publicAddOrders("lemon iced tea"));
 
+// console.log(tcs.fulfillOrder()); // "The cinnamon roll is ready!"
+// console.log(tcs.fulfillOrder()); // "The iced coffee is ready!"
+// console.log(tcs.fulfillOrder()); // "All orders have been fulfilled!"// all orders have been presumably served
+
 console.log(tsc.publicDrinksOnly());
 
 console.log(tsc.publicFoodOnly());
@@ -132,6 +140,6 @@ console.log(tsc.publicCheapestItem());
 console.log(tsc.publicDueAmount());
 
 console.log(tsc.listOrders());
-//console.log(tcs.fulfillOrder()); // "The cinnamon roll is ready!"
-// console.log(tcs.fulfillOrder()); // "The iced coffee is ready!"
-// console.log(tcs.fulfillOrder()); // "All orders have been fulfilled!"// all orders have been presumably served
+
+console.log(tsc.fulfillOrder);
+//console.log(tsc.fulfillOrder);
