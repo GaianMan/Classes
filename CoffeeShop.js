@@ -1,35 +1,3 @@
-// IMPORTANT: Orders are fulfilled in a FIFO (first-in, first-out) order.
-
-
-// tcs.addOrder("iced tea"); // "This item is currently unavailable!"
-// // specifying the variant of "iced tea" will help the process
-
-// tcs.addOrder("cinnamon roll"); // "Order added!"
-
-// tcs.addOrder("iced coffee"); // "Order added!"
-
-// tcs.listOrders; // ["cinnamon roll", "iced coffee"]
-// // the list of all the items in the current order
-
-// tcs.dueAmount(); // 2.17
-
-
-
-// tcs.listOrders(); // []
-// // an empty array is returned if all orders have been exhausted
-
-// tcs.dueAmount(); // 0.0
-// // no new orders taken, expect a zero payable
-
-// tcs.cheapestItem(); // "lemonade"
-
-// tcs.drinksOnly(); // ["orange juice", "lemonade", "cranberry juice",
-// "pineapple juice", "lemon iced tea", "vanilla chai latte", "hot
-// chocolate", "iced coffee"]
-
-// tcs.foodOnly(); // ["tuna sandwich", "ham and cheese sandwich", "bacon and
-// egg", "steak", "hamburger", "cinnamon roll"]
-
 const menu = [
     { item: "orange juice", type: "drink", price: 4.5 },
     { item: "lemonade", type: "drink", price: 4.5 },
